@@ -23,11 +23,11 @@ $ icalendar_partstat.py -h
   Install with
   
   ```
-  pip install icalendar==4.0.3
+  $ pip install icalendar==4.0.3
   ```
   
   or simply using the `requirements.txt` included in the repository:
   
   ```
-  pip install -r requirements.txt
+  $ pip install -r requirements.txt
   ```
