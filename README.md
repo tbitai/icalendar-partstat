@@ -18,7 +18,7 @@ $ icalendar_partstat.py -h
 
 - Python 3
 
-- [iCalendar for Python](https://icalendar.readthedocs.io) 4.0.3
+- iCalendar for Python 4.0.3
   
   Install with
   
@@ -31,13 +31,3 @@ $ icalendar_partstat.py -h
   ```
   pip install -r requirements.txt
   ```
-
-# Implementation
-
-1. Set `METHOD` to `REPLY`.
-
-2. Locate `VEVENT`.
-
-   2.1. Within it, locate `ATTENDEE` corresponding to the specified email.
-
-   2.2. Set `PARTSTAT` to the specified value (e.g. `ACCEPTED`).
