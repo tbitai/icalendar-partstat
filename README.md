@@ -14,7 +14,7 @@ See the help for detailed usage information:
 $ icalendar_partstat.py -h
 ```
 
-# Requirements
+## Requirements
 
 - Python 3
 
