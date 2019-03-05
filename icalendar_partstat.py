@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 
 import argparse
-from icalendar import Calendar, Event
+from icalendar import Calendar, Event, vText, vDatetime
+from datetime import datetime
+import pytz
+import re
 
 
 # Parse args
@@ -23,12 +26,14 @@ with open(args.infile) as f:
     cal = Calendar.from_ical(f.read())
 
 # Process
-cal['method'] = 'REPLY'
+cal['method'] = vText('REPLY')
 for subcomp in cal.subcomponents:
     if type(subcomp) == Event:
         for attendee in subcomp['attendee']:
-            if str(attendee) == 'mailto:' + args.email:
-                attendee.params['partstat'] = args.status
+            if re.match(r'MAILTO:{}$'.format(args.email), attendee.to_ical().decode('utf-8'), re.IGNORECASE):
+                attendee.params['partstat'] = vText(args.status)
+                subcomp['last-modified'] = vDatetime(datetime.now(tz=pytz.utc))
+                subcomp['dtstamp'] = vDatetime(datetime.now(tz=pytz.utc))
                 break
         break
 
