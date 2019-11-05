@@ -29,7 +29,9 @@ with open(args.infile) as f:
 cal['method'] = vText('REPLY')
 for subcomp in cal.subcomponents:
     if type(subcomp) == Event:
-        for attendee in subcomp['attendee']:
+        attendees_data = subcomp['attendee']
+        attendees = attendees_data if type(attendees_data) == list else [attendees_data]
+        for attendee in attendees:
             if re.match(r'MAILTO:{}$'.format(args.email), attendee.to_ical().decode('utf-8'), re.IGNORECASE):
                 attendee.params['partstat'] = vText(args.status)
                 subcomp['last-modified'] = vDatetime(datetime.now(tz=pytz.utc))
